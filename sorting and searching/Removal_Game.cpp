@@ -38,7 +38,11 @@ long long solveMem(vector<int>&v,int s,int e,int turn,vector<vector<long long>>&
     dp[s][e]=score1;
     return dp[s][e];
 
+
+
 }
+
+long long tabulation(vector<int>&v,int s,int e,int turn)
 
 int main(){
     int n;
