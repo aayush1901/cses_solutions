@@ -14,11 +14,11 @@ int main(){
     
     for(int i = 0; i<n;i++){
 
-        auto it = s.upper_bound(v[i]);
+        auto it = s.find(v[i]+1);
         if(it!= s.end()){
-            if(*it==v[i]+1){
+           
                 rounds++;
-            }
+            
 
         }
         s.insert(v[i]);
