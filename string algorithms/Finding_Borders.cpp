@@ -1,37 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// vector<int>prefix(string s){
-//     int n = s.size();
-//     vector<int>pre(n,0);
+#define int long long
 
-//     for(int i = 1; i<n;i++){
-//         int j = pre[i-1];
-
-//         while(j>0 && s[i] != s[j]){
-//             j = pre[j-1];
-
-//         }
-
-//         if(s[i]== s[j]){
-//             j++;
-//             pre[i]=j;
-//         }
-//     }
-//     return pre;
-
-// }
-
-vector<int>prefix(string s){
-    vector<int>lps(s.size(),0);
-    int pre = 0, suff = 1;
+vector<int> LPS(string s){
+    vector<int>lps(s.size());
+    lps[0]=0;
+    int pre = 0,suff=1;
     while(suff<s.size()){
-        if(s[pre]==s[suff]){
-            lps[suff]=pre+1;
+        if(s[pre] == s[suff]){
+            lps[suff]= pre+1;
             pre++;
             suff++;
         }else{
-            if(pre == 0){
+            if(pre==0){
                 lps[suff]=0;
                 suff++;
             }else{
@@ -42,40 +24,27 @@ vector<int>prefix(string s){
     return lps;
 }
 
-// int main(){
-//     string s;
-//     cin>>s;
-//     vector<int>arr=prefix(s);
-//     int j = s.size()-1;
-//     vector<int>v;
-    
-//     while(j>0){
-//         if(arr[j]>0){
-//             v.push_back(arr[j]);
-
-//         }
-//         j = arr[j]-1;
-//     }
-
-//     sort(v.begin(),v.end());
-//     for(int i = 0; i<v.size();i++){
-//         cout<<v[i]<<" ";
-//     }cout<<endl;
-    
-// }
-
-int main(){
+signed main(){
     string s;
     cin>>s;
-    vector<int>lps = prefix(s);
+    vector<int>lps = LPS(s);
+    int n = s.size()-1;
     vector<int>sol;
-   int k = lps[s.size() - 1];
-while (k > 0) {
+    int pre = n;
+
+    int k = lps[n];
+    while (k > 0) {      
     sol.push_back(k);
-    k = lps[k - 1];
-}
-    sort(sol.begin(),sol.end());
+    k = lps[k - 1];  
+    }
+
+   
+    // while(lps[pre] != 0){
+    //     sol.push_back(lps[pre]);
+    //     pre = lps[pre-1];
+    // }
+    reverse(sol.begin(),sol.end());
     for(int i = 0; i<sol.size();i++){
         cout<<sol[i]<<" ";
-    }cout<<endl;
+    }
 }
